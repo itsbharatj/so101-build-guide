@@ -5,7 +5,8 @@ window.SITE_CONFIG = {
   buyMeACoffeeUrl: "https://buymeacoffee.com/bharatjain",
 
   author: "Bharat Jain",
-  authorUrl: "https://github.com/itsbharatj",
+  authorUrl: "https://x.com/BharatJain",
+  youtubeUrl: "https://www.youtube.com/@BharatJain26",
   repoUrl: "https://github.com/itsbharatj/so101-build-guide",
 
   // Upstream design this guide is based on.
