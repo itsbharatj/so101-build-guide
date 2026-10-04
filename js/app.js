@@ -142,8 +142,8 @@
     const total = window.PARTS.reduce((s, p) => s + (qtyFor(p) ? lineCost(p) : 0), 0);
     $("#total-usd").textContent = `≈ $${Math.round(total)}`;
     $("#total-note").textContent = state.build === "pair"
-      ? "official US BOM, both arms, excl. printing"
-      : "official US BOM, follower only, excl. printing";
+      ? "reference prices, both arms, excl. printing"
+      : "reference prices, follower only, excl. printing";
   }
 
   function partRow(p, c) {
@@ -205,7 +205,7 @@
 
   /* ---------------- render: motor map ---------------- */
 
-  const RATIO = { C001: "1:345", C044: "1:191", C046: "1:147" };
+  const RATIO = { C018: "12 V · 1:345", C001: "7.4 V · 1:345", C044: "7.4 V · 1:191", C046: "7.4 V · 1:147" };
   function renderJoints() {
     $("#joints").innerHTML = window.JOINTS.map((j) => `
       <tr data-j="${j.n}">

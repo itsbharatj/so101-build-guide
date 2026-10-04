@@ -139,18 +139,54 @@ function slug(q) { return q.trim().toLowerCase().replace(/\s+/g, "-"); }
 /* ------------------------------------------------------------------ */
 /* Bill of materials                                                   */
 /* ------------------------------------------------------------------ */
-// qty.follower / qty.leader are per arm. refUSD is the unit price from the
-// official US BOM (reference only — it is not a live price).
+// qty.follower / qty.leader are per arm. refUSD is a reference unit price in
+// USD (official US BOM where listed, otherwise a typical retail price).
 window.PARTS = [
+  {
+    id: "c018",
+    group: "Motors",
+    name: "Feetech STS3215 servo — 12 V, 1/345 gear",
+    code: "C018 · follower arm",
+    qty: { follower: 6, leader: 0 },
+    refUSD: 16,
+    specs: ["12 V", "1:345", "~30 kg·cm stall", "Follower only"],
+    note: "All six follower joints use this servo. It's the recommended high-torque version. Check that the listing says C018 or 12 V / 30 kg, and power this arm from the 12 V supply below.",
+    search: "Feetech STS3215 C018 12V",
+    buy: {
+      us: [
+        { store: "RobotShop", url: "https://www.robotshop.com/products/feetech-12v-30kgcm-magnetic-encoding-servo-sts3215", kind: "direct" },
+      ],
+      uk: [
+        { store: "RobotShop UK", url: "https://uk.robotshop.com/products/feetech-12v-30kgcm-magnetic-encoding-servo-sts3215", kind: "direct" },
+      ],
+      eu: [
+        { store: "OpenELAB", url: "https://openelab.io/products/feetech-sts3215-c018-servo-12v", kind: "direct" },
+      ],
+      in: [
+        { store: "Evelta (Mumbai)", url: "https://evelta.com/st3215-c018-12v-30kg-cm-dual-shaft-ttl-serial-servo-metal-gears-magnetic-encoder/", kind: "direct" },
+      ],
+      mx: [
+        { store: "Mercado Libre MX", url: "https://articulo.mercadolibre.com.mx/MLM-3582679048-servos-sts3215-de-12-v-para-brazo-robotico-so-arm100-de-30-k-_JM", kind: "direct" },
+      ],
+      br: [
+        { store: "Mercado Livre", url: "https://lista.mercadolivre.com.br/sts3215-12v", kind: "search" },
+      ],
+      global: [
+        { store: "Alibaba · 6-pack (official BOM link)", url: "https://www.alibaba.com/product-detail/6PCS-12V-30KG-STS3215-High-Torque_1601216757543.html", kind: "direct" },
+        { store: "WowRobo", url: "https://shop.wowrobo.com/products/feetech-sts3215-servo-12v-30kg-high-torque-servo-for-so-arm100", kind: "direct" },
+      ],
+    },
+  },
   {
     id: "c001",
     group: "Motors",
     name: "Feetech STS3215 servo — 7.4 V, 1/345 gear",
-    code: "C001",
-    qty: { follower: 6, leader: 1 },
+    code: "C001 · leader arm",
+    leaderOnly: true,
+    qty: { follower: 0, leader: 1 },
     refUSD: 13.89,
-    specs: ["7.4 V", "1:345", "~19.5 kg·cm stall", "TTL serial bus", "12-bit magnetic encoder"],
-    note: "All six follower joints use this one. The leader uses just one, on Shoulder Lift (joint 2). Check that the listing says C001 or 1/345. Other STS3215 versions look the same but have different gearing.",
+    specs: ["7.4 V", "1:345", "~19.5 kg·cm stall", "Leader only"],
+    note: "The leader uses one of these, on Shoulder Lift (joint 2). Check that the listing says C001 or 7.4 V 1/345.",
     search: "Feetech STS3215 C001 7.4V",
     buy: {
       us: [
@@ -159,9 +195,6 @@ window.PARTS = [
       ],
       eu: [
         { store: "OpenELAB", url: "https://openelab.com/products/feetech-sts3215-c001-servo-7", kind: "direct" },
-      ],
-      uk: [
-        { store: "Amazon UK · 6-pack", url: "https://www.amazon.co.uk/RCmall-High-Torque-Magnetic-Feedback-Function/dp/B0FQHCV9GP", kind: "direct", note: "7.4 V / 19 kg (1:345) six-pack" },
       ],
       in: [
         { store: "Evelta (Mumbai)", url: "https://evelta.com/sts3215-7-4v-19kg-dual-axis-ttl-string-servo-motor/", kind: "direct" },
@@ -191,7 +224,7 @@ window.PARTS = [
     id: "c044",
     group: "Motors",
     name: "Feetech STS3215 servo — 7.4 V, 1/191 gear",
-    code: "C044",
+    code: "C044 · leader arm",
     leaderOnly: true,
     qty: { follower: 0, leader: 2 },
     refUSD: 13.89,
@@ -222,7 +255,7 @@ window.PARTS = [
     id: "c046",
     group: "Motors",
     name: "Feetech STS3215 servo — 7.4 V, 1/147 gear",
-    code: "C046",
+    code: "C046 · leader arm",
     leaderOnly: true,
     qty: { follower: 0, leader: 3 },
     refUSD: 13.89,
@@ -275,14 +308,29 @@ window.PARTS = [
     },
   },
   {
-    id: "psu",
+    id: "psu12",
     group: "Electronics",
-    name: "5 V DC power supply",
+    name: "12 V DC power supply · follower arm",
+    code: "12 V · 5 A or more · 5.5 × 2.1 mm barrel",
+    qty: { follower: 1, leader: 0 },
+    refUSD: 12,
+    specs: ["12 V", "≥ 5 A (60 W)", "5.5 × 2.1 mm plug", "Follower only"],
+    note: "Powers the follower's 12 V C018 servos. Plug it into the follower's driver board only.",
+    search: "12V 5A power supply 5.5x2.1mm",
+    buy: {
+      us: [{ store: "Amazon US · ALITOVE 12 V 5 A", url: "https://www.amazon.com/ALITOVE-Adapter-Converter-100-240V-5-5x2-1mm/dp/B01GEA8PQA", kind: "direct" }],
+    },
+  },
+  {
+    id: "psu5",
+    group: "Electronics",
+    name: "5 V DC power supply · leader arm",
     code: "5 V · 4 A or more · 5.5 × 2.1 mm barrel",
-    qty: { follower: 1, leader: 1 },
+    leaderOnly: true,
+    qty: { follower: 0, leader: 1 },
     refUSD: 10,
-    specs: ["5 V", "≥ 4 A", "5.5 × 2.1 mm plug"],
-    note: "Use this with the 7.4 V servos. If you build the follower with 12 V servos (C018), get a 12 V supply rated 5 A or more for it instead. Never put 12 V on 7.4 V servos.",
+    specs: ["5 V", "≥ 4 A", "5.5 × 2.1 mm plug", "Leader only"],
+    note: "Powers the leader's 7.4 V servos. Never plug the 12 V supply into the leader, because it will damage its servos. Label the two adapters so you don't mix them up.",
     search: "5V 4A power supply 5.5x2.1mm",
     buy: {
       us: [{ store: "Amazon US", url: "https://www.amazon.com/Facmogu-Switching-Transformer-Compatible-5-5x2-1mm/dp/B087LY41PV/", kind: "direct" }],
@@ -362,16 +410,6 @@ window.PARTS = [
 /* Optional upgrade (shown separately, not counted in totals). */
 window.OPTIONAL_PARTS = [
   {
-    name: "12 V STS3215 (C018), 30 kg·cm, for a stronger follower",
-    note: "Swap the follower's six C001 servos for these and use a 12 V ≥ 5 A supply on the follower. The leader always stays on 7.4 V servos.",
-    links: [
-      { store: "Alibaba · 6-pack (official BOM)", url: "https://www.alibaba.com/product-detail/6PCS-12V-30KG-STS3215-High-Torque_1601216757543.html" },
-      { store: "WowRobo", url: "https://shop.wowrobo.com/products/feetech-sts3215-servo-12v-30kg-high-torque-servo-for-so-arm100" },
-      { store: "RobotShop", url: "https://www.robotshop.com/products/feetech-12v-30kgcm-magnetic-encoding-servo-sts3215" },
-      { store: "Mercado Libre MX", url: "https://articulo.mercadolibre.com.mx/MLM-3582679048-servos-sts3215-de-12-v-para-brazo-robotico-so-arm100-de-30-k-_JM" },
-    ],
-  },
-  {
     name: "Leader servo bundle: 1× C001 + 2× C044 + 3× C046",
     note: "The official BOM's single listing for all six leader servos, so you don't have to buy three variants separately.",
     links: [
@@ -384,12 +422,12 @@ window.OPTIONAL_PARTS = [
 /* Leader joint → motor map (LeRobot SO-101 guide)                     */
 /* ------------------------------------------------------------------ */
 window.JOINTS = [
-  { n: 1, joint: "Base / Shoulder Pan", leader: "C044", follower: "C001" },
-  { n: 2, joint: "Shoulder Lift",       leader: "C001", follower: "C001" },
-  { n: 3, joint: "Elbow Flex",          leader: "C044", follower: "C001" },
-  { n: 4, joint: "Wrist Flex",          leader: "C046", follower: "C001" },
-  { n: 5, joint: "Wrist Roll",          leader: "C046", follower: "C001" },
-  { n: 6, joint: "Gripper / Trigger",   leader: "C046", follower: "C001" },
+  { n: 1, joint: "Base / Shoulder Pan", leader: "C044", follower: "C018" },
+  { n: 2, joint: "Shoulder Lift",       leader: "C001", follower: "C018" },
+  { n: 3, joint: "Elbow Flex",          leader: "C044", follower: "C018" },
+  { n: 4, joint: "Wrist Flex",          leader: "C046", follower: "C018" },
+  { n: 5, joint: "Wrist Roll",          leader: "C046", follower: "C018" },
+  { n: 6, joint: "Gripper / Trigger",   leader: "C046", follower: "C018" },
 ];
 
 /* ------------------------------------------------------------------ */

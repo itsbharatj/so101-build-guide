@@ -49,7 +49,7 @@
         <div class="hero-stats" role="list">
           <div role="listitem"><b>12</b><span>STS3215 servos<br/>for two arms</span></div>
           <div role="listitem"><b>6</b><span>DOF per arm<br/>incl. gripper</span></div>
-          <div role="listitem"><b>~$230</b><span>parts for both arms,<br/>before printing</span></div>
+          <div role="listitem"><b>~$245</b><span>parts for both arms,<br/>before printing</span></div>
         </div>
         <div class="hero-cta">
           <a class="btn btn-solid" href="#parts">See the parts list →</a>
@@ -110,8 +110,9 @@
       <div class="callout">
         <h3>Before you buy servos</h3>
         <ul>
-          <li><b>STS3215 servos look the same but come in different gearings.</b> Check for <code>C001</code> (1:345), <code>C044</code> (1:191) or <code>C046</code> (1:147) on the listing or the label.</li>
-          <li>The <b>follower</b> uses six C001. The <b>leader</b> uses one C001, two C044 and three C046 (see the <a href="#motors">motor map</a>).</li>
+          <li><b>Follower arm:</b> six <code>C018</code> servos (12 V, 30 kg·cm) powered by a <b>12 V</b> supply.</li>
+          <li><b>Leader arm:</b> one <code>C001</code>, two <code>C044</code> and three <code>C046</code> (all 7.4 V) powered by a <b>5 V</b> supply. See the <a href="#motors">motor map</a>.</li>
+          <li><b>All STS3215 servos look the same,</b> so check the code on the listing or the label before you pay. Never connect the 12 V supply to the leader.</li>
           <li>Each servo ships with its horn and M2×6 / M3×6 screws, so you don't need to buy screws separately.</li>
         </ul>
       </div>
@@ -128,7 +129,7 @@
         <span class="num">02</span>
         <div>
           <h2>Motor map</h2>
-          <p>The leader mixes three gear ratios so it holds its own weight but stays light to move by hand. If you mix these up, the leader will feel stiff or sag.</p>
+          <p>The follower uses the 12 V C018 on every joint. The leader mixes three 7.4 V gear ratios so it holds its own weight but stays light to move by hand. If you mix these up, the leader will feel stiff or sag.</p>
         </div>
       </header>
       <div class="motor-map">

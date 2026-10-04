@@ -366,6 +366,7 @@ select {
 .mcode { font: 600 12px var(--f-mono); padding: 3px 8px; border-radius: 6px; display: inline-block; }
 .mcode small { font-weight: 400; opacity: 0.8; margin-left: 4px; }
 .m-C001 { background: var(--paper-2); border: 1px solid var(--rule); }
+.m-C018 { background: var(--accent-soft); color: var(--accent-ink); }
 .m-C044 { background: var(--blue-soft); color: var(--blue); }
 .m-C046 { background: var(--green-soft); color: var(--green); }
 @media (max-width: 760px) { .motor-map { grid-template-columns: 1fr; } }
