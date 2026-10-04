@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SO-101 Build Sheet</title>
+  <meta name="description" content="Everything you need to build the open-source SO-101 robot arm: a country-aware bill of materials with local and global suppliers, the official STL files, and print settings." />
+  <meta property="og:title" content="SO-101 Build Sheet" />
+  <meta property="og:description" content="Parts list, local suppliers by country, and official STL files for the SO-101 robot arm." />
+  <meta property="og:image" content="assets/img/SO101_Follower.webp" />
+  <meta name="theme-color" content="#f3efe6" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="SO-101 Build Sheet home">
+      <span class="brand-mark" aria-hidden="true">SO</span>
+      <span class="brand-text">101 <em>build sheet</em></span>
+    </a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#parts">Parts</a>
+      <a href="#motors">Motor map</a>
+      <a href="#kits">Kits</a>
+      <a href="#print">STL files</a>
+      <a href="#assemble">Assemble</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" data-theme-toggle>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z" fill="currentColor"/></svg>
+    </button>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Open-source robot arm · LeRobot ready</p>
+        <h1>Build your own <span class="hl">SO‑101</span>.</h1>
+        <p class="lede">
+          Everything you need to buy, print and assemble on one page. Pick your country and
+          each part links to a <strong>local supplier first</strong>, then to stores that ship worldwide.
+        </p>
+        <div class="hero-stats" role="list">
+          <div role="listitem"><b>12</b><span>STS3215 servos<br/>for two arms</span></div>
+          <div role="listitem"><b>6</b><span>DOF per arm<br/>incl. gripper</span></div>
+          <div role="listitem"><b>~$230</b><span>parts for both arms,<br/>before printing</span></div>
+        </div>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#parts">See the parts list →</a>
+          <a class="btn btn-ghost" href="#print">Download STLs</a>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <div class="arm-card arm-follower">
+          <img src="assets/img/SO101_Follower.webp" alt="SO-101 follower arm: a white 3D-printed 6-axis arm with a gripper" width="600" height="600" />
+          <figcaption><span class="tag">Follower</span> does the work</figcaption>
+        </div>
+        <div class="arm-card arm-leader">
+          <img src="assets/img/SO101_Leader.webp" alt="SO-101 leader arm with a handle and trigger for teleoperation" width="600" height="600" />
+          <figcaption><span class="tag tag-alt">Leader</span> you move it by hand</figcaption>
+        </div>
+      </figure>
+    </section>
+
+    <!-- ============ CONTROL BAR ============ -->
+    <section class="controls" id="controls" aria-label="Choose your country and build">
+      <div class="control">
+        <label for="country">Where are you shipping to?</label>
+        <div class="select-wrap">
+          <select id="country"></select>
+        </div>
+      </div>
+      <div class="control">
+        <span class="label" id="build-label">What are you building?</span>
+        <div class="seg" role="radiogroup" aria-labelledby="build-label">
+          <button type="button" role="radio" data-build="pair" aria-checked="true">Leader + Follower <small>recommended</small></button>
+          <button type="button" role="radio" data-build="follower" aria-checked="false">Follower only</button>
+        </div>
+      </div>
+      <div class="control control-total" aria-live="polite">
+        <span class="label">Reference cost</span>
+        <div class="total"><b id="total-usd">$0</b><span id="total-note">official US BOM, excl. printing</span></div>
+      </div>
+    </section>
+
+    <!-- ============ 01 PARTS ============ -->
+    <section class="block" id="parts">
+      <header class="block-head">
+        <span class="num">01</span>
+        <div>
+          <h2>Bill of materials</h2>
+          <p>
+            Quantities change with your build. Tick off items as you order them; your list is saved in
+            this browser. <span class="legend"><i class="dot dot-local"></i>Local or regional store
+            <i class="dot dot-global"></i>Ships worldwide <i class="dot dot-search"></i>Search results (commodity part)</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="region-banner" id="region-banner" hidden></div>
+
+      <div class="bom" id="bom"></div>
+
+      <div class="callout">
+        <h3>Before you buy servos</h3>
+        <ul>
+          <li><b>STS3215 servos look the same but come in different gearings.</b> Check for <code>C001</code> (1:345), <code>C044</code> (1:191) or <code>C046</code> (1:147) on the listing or the label.</li>
+          <li>The <b>follower</b> uses six C001. The <b>leader</b> uses one C001, two C044 and three C046 (see the <a href="#motors">motor map</a>).</li>
+          <li>Each servo ships with its horn and M2×6 / M3×6 screws, so you don't need to buy screws separately.</li>
+        </ul>
+      </div>
+
+      <details class="optional">
+        <summary>Optional upgrades and bundles</summary>
+        <div id="optional"></div>
+      </details>
+    </section>
+
+    <!-- ============ 02 MOTOR MAP ============ -->
+    <section class="block" id="motors">
+      <header class="block-head">
+        <span class="num">02</span>
+        <div>
+          <h2>Motor map</h2>
+          <p>The leader mixes three gear ratios so it holds its own weight but stays light to move by hand. If you mix these up, the leader will feel stiff or sag.</p>
+        </div>
+      </header>
+      <div class="motor-map">
+        <svg class="arm-diagram" viewBox="0 0 360 300" role="img" aria-labelledby="armTitle">
+          <title id="armTitle">Diagram of the SO-101 arm with joints numbered 1 to 6 from base to gripper</title>
+          <g class="arm-lines">
+            <rect x="110" y="250" width="140" height="22" rx="4"/>
+            <line x1="180" y1="250" x2="180" y2="210"/>
+            <line x1="180" y1="210" x2="120" y2="120"/>
+            <line x1="120" y1="120" x2="230" y2="80"/>
+            <line x1="230" y1="80"  x2="285" y2="110"/>
+            <line x1="285" y1="110" x2="310" y2="150"/>
+            <line x1="310" y1="150" x2="330" y2="185"/>
+            <line x1="310" y1="150" x2="296" y2="190"/>
+          </g>
+          <g class="arm-joints">
+            <g data-j="1"><circle cx="180" cy="250" r="13"/><text x="180" y="255">1</text></g>
+            <g data-j="2"><circle cx="180" cy="210" r="13"/><text x="180" y="215">2</text></g>
+            <g data-j="3"><circle cx="120" cy="120" r="13"/><text x="120" y="125">3</text></g>
+            <g data-j="4"><circle cx="230" cy="80"  r="13"/><text x="230" y="85">4</text></g>
+            <g data-j="5"><circle cx="285" cy="110" r="13"/><text x="285" y="115">5</text></g>
+            <g data-j="6"><circle cx="310" cy="150" r="13"/><text x="310" y="155">6</text></g>
+          </g>
+        </svg>
+        <table class="joint-table">
+          <thead><tr><th>#</th><th>Joint</th><th>Leader</th><th>Follower</th></tr></thead>
+          <tbody id="joints"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 03 KITS ============ -->
+    <section class="block" id="kits">
+      <header class="block-head">
+        <span class="num">03</span>
+        <div>
+          <h2>Or skip the sourcing: buy a kit</h2>
+          <p>Kits for <b class="region-name">your region</b> are listed first, followed by sellers that ship worldwide. <span class="badge-official">Listed in the official repo</span> marks sellers named in TheRobotStudio's README.</p>
+        </div>
+      </header>
+      <div class="kits" id="kits-list"></div>
+    </section>
+
+    <!-- ============ 04 PRINT ============ -->
+    <section class="block" id="print">
+      <header class="block-head">
+        <span class="num">04</span>
+        <div>
+          <h2>3D-printed parts</h2>
+          <p>Official STL files from <a href="https://github.com/TheRobotStudio/SO-ARM100" target="_blank" rel="noopener">TheRobotStudio/SO-ARM100</a> (Apache-2.0), mirrored here unchanged. Click any part to view it in 3D.</p>
+        </div>
+      </header>
+
+      <div class="print-grid">
+        <div class="print-settings">
+          <h3>Print settings</h3>
+          <dl>
+            <div><dt>Material</dt><dd>PLA+</dd></div>
+            <div><dt>Nozzle / layer</dt><dd>0.4 mm @ 0.2 mm<br/><small>or 0.6 mm @ 0.4 mm</small></dd></div>
+            <div><dt>Infill</dt><dd>15%</dd></div>
+            <div><dt>Supports</dt><dd>Everywhere, but skip slopes steeper than 45°. No supports in horizontal screw holes.</dd></div>
+            <div><dt>Bed</dt><dd>Clean and level, plus a thin layer of glue stick if your printer recommends it</dd></div>
+          </dl>
+          <p class="tip"><b>Print a gauge first.</b> Check the fit against an STS3215 servo or a 4×2 LEGO brick before you commit to printing the full plates.</p>
+          <div class="gauges" id="gauges"></div>
+        </div>
+
+        <div class="print-files">
+          <h3>Full plates <small>all parts for one arm, pre-oriented</small></h3>
+          <div class="plates" id="plates"></div>
+          <p class="ref-model">
+            <a class="file-btn" href="assets/stl/reference/SO101_Assembly.stl" download>↓ Full assembly reference model (38 MB)</a>
+            <small>A model of the complete arm for reference only. Don't print it.</small>
+          </p>
+
+          <h3>Individual parts <small><a href="assets/stl/SO101_individual_parts.zip" download>Download all (.zip)</a></small></h3>
+          <div class="filter-row" role="group" aria-label="Filter parts">
+            <button type="button" class="chip is-on" data-filter="all">All</button>
+            <button type="button" class="chip" data-filter="common">Both arms</button>
+            <button type="button" class="chip" data-filter="follower">Follower only</button>
+            <button type="button" class="chip" data-filter="leader">Leader only</button>
+          </div>
+          <ul class="parts-list" id="stl-parts"></ul>
+        </div>
+      </div>
+
+      <div class="viewer-wrap" id="viewer-wrap">
+        <div class="viewer-head">
+          <span id="viewer-title">Base_SO101.stl</span>
+          <a id="viewer-dl" class="btn btn-small" href="#" download>Download</a>
+        </div>
+        <div class="viewer" id="viewer" aria-label="3D preview of the selected part">
+          <p class="viewer-msg" id="viewer-msg">Loading 3D preview…</p>
+        </div>
+        <p class="viewer-hint">Drag to rotate · scroll to zoom</p>
+      </div>
+
+      <h3 class="sub">No printer? Order printed parts</h3>
+      <div class="services" id="services"></div>
+    </section>
+
+    <!-- ============ 05 ASSEMBLE ============ -->
+    <section class="block" id="assemble">
+      <header class="block-head">
+        <span class="num">05</span>
+        <div>
+          <h2>Assemble &amp; bring it to life</h2>
+          <p>Once the parts arrive, the official guides take it from here.</p>
+        </div>
+      </header>
+      <ol class="steps">
+        <li>
+          <h4>Set up the motors</h4>
+          <p>Install LeRobot with the Feetech SDK (<code>pip install -e ".[feetech]"</code>), then run <code>lerobot-setup-motors</code>. It gives each servo its ID one at a time, so do this <em>before</em> assembly.</p>
+        </li>
+        <li>
+          <h4>Assemble joint by joint</h4>
+          <p>Each joint has a short video. Use M2×6 screws for motors and M3×6 screws for horns and frames.</p>
+        </li>
+        <li>
+          <h4>Calibrate both arms</h4>
+          <p>Run <code>lerobot-calibrate</code> so the leader and follower report matching positions.</p>
+        </li>
+        <li>
+          <h4>Teleoperate, record and train</h4>
+          <p>Move the leader and the follower copies it. Record demonstrations and train a policy.</p>
+        </li>
+      </ol>
+      <div class="link-cards">
+        <a class="link-card" href="https://huggingface.co/docs/lerobot/so101" target="_blank" rel="noopener"><b>Assembly guide</b><span>Hugging Face · LeRobot docs</span></a>
+        <a class="link-card" href="https://github.com/TheRobotStudio/SO-ARM100" target="_blank" rel="noopener"><b>Hardware repo</b><span>TheRobotStudio / SO-ARM100</span></a>
+        <a class="link-card" href="https://github.com/huggingface/lerobot" target="_blank" rel="noopener"><b>LeRobot</b><span>huggingface / lerobot</span></a>
+        <a class="link-card" href="https://discord.gg/ggrqhPTsMe" target="_blank" rel="noopener"><b>Community</b><span>LeRobot Discord</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="made">Made by <a id="author-link" href="https://github.com/itsbharatj" target="_blank" rel="noopener">Bharat Jain</a>.</p>
+        <p class="fine">
+          This is an unofficial community guide and isn't affiliated with TheRobotStudio, Hugging Face or any seller.
+          Prices are reference values from the official BOM. Suppliers last checked <span id="last-checked"></span>.
+          Spotted a dead link or know a good local shop? <a id="repo-link" href="#" target="_blank" rel="noopener">Open an issue</a>.
+        </p>
+      </div>
+      <a class="coffee" id="coffee" href="https://www.buymeacoffee.com/" target="_blank" rel="noopener">
+        <span aria-hidden="true">☕</span> Buy me a coffee
+      </a>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="js/viewer.js"></script>
+</body>
+</html>
