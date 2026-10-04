@@ -511,3 +511,8 @@ dd small { color: var(--ink-3); }
   dl div { grid-template-columns: 1fr; gap: 2px; }
   .gauges { grid-template-columns: 1fr; }
 }
+
+.coffee-top { padding: 7px 13px; font-size: 13px; box-shadow: 2px 2px 0 #17150f; }
+.topnav + .coffee-top { margin-left: 0; }
+@media (max-width: 820px) { .coffee-top { margin-left: auto; } .coffee-top + .theme-toggle { margin-left: 0; } }
+@media (max-width: 420px) { .coffee-label { display: none; } }

@@ -327,7 +327,7 @@
   }
 
   function initFooter() {
-    $("#coffee").href = cfg.buyMeACoffeeUrl || "https://www.buymeacoffee.com/";
+    $$("[data-coffee]").forEach((a) => (a.href = cfg.buyMeACoffeeUrl || "https://buymeacoffee.com/bharatjain"));
     $("#author-link").href = cfg.authorUrl;
     $("#author-link").textContent = cfg.author;
     $("#repo-link").href = `${cfg.repoUrl}/issues`;

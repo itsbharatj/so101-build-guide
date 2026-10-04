@@ -2,7 +2,7 @@
 window.SITE_CONFIG = {
   // Paste your Buy Me a Coffee page here, e.g. "https://www.buymeacoffee.com/yourname".
   // While empty, the button links to the Buy Me a Coffee homepage.
-  buyMeACoffeeUrl: "",
+  buyMeACoffeeUrl: "https://buymeacoffee.com/bharatjain",
 
   author: "Bharat Jain",
   authorUrl: "https://github.com/itsbharatj",
