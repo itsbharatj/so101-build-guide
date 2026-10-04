@@ -327,12 +327,13 @@
   }
 
   function initFooter() {
+    $$("[data-repo]").forEach((a) => (a.href = cfg.repoUrl));
     $$("[data-coffee]").forEach((a) => (a.href = cfg.buyMeACoffeeUrl || "https://buymeacoffee.com/bharatjain"));
     $("#author-link").href = cfg.authorUrl;
     $("#author-link").textContent = cfg.author;
     $("#x-link").href = cfg.authorUrl;
     if (cfg.youtubeUrl) $("#yt-link").href = cfg.youtubeUrl;
-    $("#repo-link").href = `${cfg.repoUrl}/issues`;
+    $("#repo-link").href = cfg.repoUrl;
     $("#last-checked").textContent = cfg.lastChecked;
   }
 
